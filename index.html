@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador Kaito</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Ícones Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+  <!-- Fundo 3D Interativo e Iluminação -->
+  <div class="bg-3d-container">
+    <div class="shape shape-cube"></div>
+    <div class="shape shape-sphere"></div>
+    <div class="shape shape-pyramid"></div>
+    <div class="shape shape-torus"></div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+      <div class="badge"><i class="ph ph-sparkle"></i> Produtividade & Rotina</div>
+      <h1 class="gradient-text">Organizador Kaito</h1>
+      <p class="description">
+        Sua central pessoal para alta performance e equilíbrio. Gerencie tarefas diárias, 
+        organize hábitos e consulte cartões interativos de estratégias e dicas práticas para otimizar o seu dia.
+      </p>
+    </header>
+
+    <!-- Seção do Organizador de Tarefas -->
+    <section class="task-section">
+      <div class="section-title">
+        <i class="ph ph-check-square-offset"></i>
+        <h2>Gerenciador de Tarefas</h2>
+      </div>
+
+      <div class="task-input-group">
+        <input type="text" id="taskInput" placeholder="Adicionar nova tarefa ou rotina...">
+        <button id="addTaskBtn" onclick="addTask()">
+          <i class="ph ph-plus-bold"></i> Adicionar
+        </button>
+      </div>
+
+      <ul class="task-list" id="taskList">
+        <li class="task-item completed">
+          <span onclick="toggleTask(this)"><i class="ph ph-check-circle"></i> Planejar o dia seguinte na noite anterior</span>
+          <button class="delete-btn" onclick="removeTask(this)"><i class="ph ph-trash"></i></button>
+        </li>
+        <li class="task-item">
+          <span onclick="toggleTask(this)"><i class="ph ph-circle"></i> Fazer 30 minutos de exercício físico</span>
+          <button class="delete-btn" onclick="removeTask(this)"><i class="ph ph-trash"></i></button>
+        </li>
+        <li class="task-item">
+          <span onclick="toggleTask(this)"><i class="ph ph-circle"></i> Estudar/Trabalhar em blocos de foco</span>
+          <button class="delete-btn" onclick="removeTask(this)"><i class="ph ph-trash"></i></button>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Seção de Cards Explicativos com Dicas -->
+    <section class="tips-section">
+      <div class="section-title">
+        <i class="ph ph-lightbulb"></i>
+        <h2>Dicas para Aumentar sua Produtividade</h2>
+      </div>
+
+      <div class="cards-grid">
+        
+        <!-- Card 1 -->
+        <div class="tip-card" onclick="openModal('modal1')">
+          <div class="card-icon"><i class="ph ph-timer"></i></div>
+          <h3>Técnica Pomodoro</h3>
+          <p>Divida seu trabalho em intervalos de foco absoluto e descansos curtos...</p>
+          <span class="card-link">Saber mais <i class="ph ph-arrow-right"></i></span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="tip-card" onclick="openModal('modal2')">
+          <div class="card-icon"><i class="ph ph-target"></i></div>
+          <h3>Regra dos 2 Minutos</h3>
+          <p>Se uma tarefa leva menos de dois minutos para ser realizada, faça-a agora...</p>
+          <span class="card-link">Saber mais <i class="ph ph-arrow-right"></i></span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="tip-card" onclick="openModal('modal3')">
+          <div class="card-icon"><i class="ph ph-brain"></i></div>
+          <h3>Matriz de Eisenhower</h3>
+          <p>Priorize suas atividades separando o que é urgente do que é realmente importante...</p>
+          <span class="card-link">Saber mais <i class="ph ph-arrow-right"></i></span>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODAIS INTERATIVOS -->
+  
+  <!-- Modal 1 -->
+  <div class="modal-overlay" id="modal1">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('modal1')"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <i class="ph ph-timer modal-icon"></i>
+        <h3>Técnica Pomodoro</h3>
+      </div>
+      <div class="modal-body">
+        <p>A Técnica Pomodoro é um método de gerenciamento de tempo focado em manter a atenção plena e evitar a fadiga mental.</p>
+        <h4>Como aplicar na sua rotina:</h4>
+        <ul>
+          <li><strong>25 Minutos:</strong> Trabalhe em uma única tarefa com foco total, sem interrupções.</li>
+          <li><strong>5 Minutos:</strong> Faça uma pausa curta. Levante, tome água ou se espreguice.</li>
+          <li><strong>A cada 4 ciclos:</strong> Faça uma pausa mais longa (de 15 a 30 minutos).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal-overlay" id="modal2">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('modal2')"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <i class="ph ph-target modal-icon"></i>
+        <h3>Regra dos 2 Minutos</h3>
+      </div>
+      <div class="modal-body">
+        <p>Criada por David Allen no método Getting Things Done (GTD), essa regra busca eliminar o acúmulo de pequenas pendências.</p>
+        <h4>Como aplicar na sua rotina:</h4>
+        <ul>
+          <li>Se a ação leva menos de 2 minutos (ex: responder um e-mail rápido, arrumar a cama, guardar um objeto), **faça imediatamente**.</li>
+          <li>Evita a procrastinação e limpa sua mente para focar em tarefas complexas.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal-overlay" id="modal3">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('modal3')"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <i class="ph ph-brain modal-icon"></i>
+        <h3>Matriz de Eisenhower</h3>
+      </div>
+      <div class="modal-body">
+        <p>Uma ferramenta poderosa para tomada de decisão e organização de prioridades diárias.</p>
+        <h4>Os 4 Quadrantes:</h4>
+        <ul>
+          <li><strong>Urgente e Importante:</strong> Faça imediatamente (Crises, prazos curtos).</li>
+          <li><strong>Não Urgente, mas Importante:</strong> Agende (Planejamento, saúde, aprendizado).</li>
+          <li><strong>Urgente, mas Não Importante:</strong> Delegue (Interrupções, algumas solicitações).</li>
+          <li><strong>Não Urgente e Não Importante:</strong> Elimine (Distrações, hábitos nocivos).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Interno para Manipulação de Tarefas e Modais -->
+  <script>
+    // Funções de Gerenciamento do Modal
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    // Fechar modal ao clicar fora dele
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.classList.remove('active');
+      }
+    }
+
+    // Funções de Gerenciamento de Tarefas
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const text = input.value.trim();
+
+      if (text !== "") {
+        const ul = document.getElementById('taskList');
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        li.innerHTML = `
+          <span onclick="toggleTask(this)"><i class="ph ph-circle"></i> ${text}</span>
+          <button class="delete-btn" onclick="removeTask(this)"><i class="ph ph-trash"></i></button>
+        `;
+        ul.appendChild(li);
+        input.value = "";
+      }
+    }
+
+    function toggleTask(element) {
+      const parent = element.parentElement;
+      const icon = element.querySelector('i');
+      parent.classList.toggle('completed');
+
+      if (parent.classList.contains('completed')) {
+        icon.className = 'ph ph-check-circle';
+      } else {
+        icon.className = 'ph ph-circle';
+      }
+    }
+
+    function removeTask(button) {
+      const item = button.parentElement;
+      item.remove();
+    }
+
+    // Permitir adicionar tarefa pressionando 'Enter'
+    document.getElementById('taskInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>
